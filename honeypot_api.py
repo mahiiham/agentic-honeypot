@@ -8,6 +8,15 @@ import requests
 API_KEY = os.getenv("API_KEY")
 GUVI_CALLBACK_URL = "https://hackathon.guvi.in/api/updateHoneyPotFinalResult"
 app = FastAPI(title="Agentic HoneyPot API", version="1.0")
+@app.get("/")
+def home():
+    return {
+        "service": "Agentic HoneyPot API",
+        "status": "running",
+        "docs": "/docs",
+        "endpoint": "/honeypot",
+        "note": "Use POST /honeypot with JSON body"
+    }
 #memory store
 SESSIONS = {}
 #helpers
