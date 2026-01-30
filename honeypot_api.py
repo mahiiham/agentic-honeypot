@@ -53,8 +53,8 @@ def agent_reply(turns: int) -> str:
         "I’m trying to follow, please be patient."
     ]
     return replies[turns % len(replies)]
-    def send_final_callback(session_id: str, session: dict):
-     payload = {
+def send_final_callback(session_id: str, session: dict):
+  payload = {
         "sessionId": session_id,
         "scamDetected": True,
         "totalMessagesExchanged": session["totalMessages"],
@@ -62,14 +62,14 @@ def agent_reply(turns: int) -> str:
         "agentNotes": "Scammer used urgency and payment redirection tactics"
     }
 
-    try:
+  try:
         requests.post(
             "https://hackathon.guvi.in/api/updateHoneyPotFinalResult",
             json=payload,
             timeout=5
         )
         print("✅ GUVI callback sent successfully for session:", session_id)
-    except Exception as e:
+  except Exception as e:
         print("❌ GUVI callback failed for session:", session_id, "Error:", e)
 
 #api endpoint
